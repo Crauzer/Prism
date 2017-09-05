@@ -5,9 +5,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 
-namespace HardwareBreakpoint
+namespace Prism
 {
-    public class ExternalProcessHook : IDisposable
+    public class ProcessHook : IDisposable
     {
         public List<Hook> Hooks { get; private set; } = new List<Hook>();
         private readonly List<IntPtr> OpenThreadHandles = new List<IntPtr>();
@@ -18,7 +18,7 @@ namespace HardwareBreakpoint
         private readonly Hook _hook;
         private bool _disposed;
 
-        public ExternalProcessHook(Process gameProcess, HookRegister register, IntPtr hookLocation, ExternalProcessHook.HandleHookCallback callback)
+        public ProcessHook(Process gameProcess, HookRegister register, IntPtr hookLocation, ProcessHook.HandleHookCallback callback)
         {
             Hook hookItem = new Hook()
             {
@@ -40,7 +40,7 @@ namespace HardwareBreakpoint
             RemoveThreadHook(hookItem);
         }
 
-        ~ExternalProcessHook()
+        ~ProcessHook()
         {
             this.Dispose();
         }
