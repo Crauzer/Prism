@@ -81,4 +81,14 @@ namespace Prism.WinExtern
         PROCESS_VM_WRITE = 0x0020,
         SYNCHRONIZE = 0x00100000
     }
+
+    [Flags]
+    public enum HookRegister
+    {
+        None = 0,
+        DR0 = 1,
+        DR1 = 2,
+        DR2 = 4,
+        DR3 = 8,
+    }
 }
