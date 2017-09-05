@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.WinExtern;
+using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
@@ -6,31 +7,6 @@ namespace Prism
 {
     public class MemoryEditor : IDisposable
     {
-        [DllImport("kernel32.dll")]
-        private static extern IntPtr OpenProcess(ProcessAccessRights dwDesiredAccess, bool bInheritHandle, int dwProcessId);
-        [DllImport("kernel32.dll")]
-        private static extern bool ReadProcessMemory(int hProcess, int lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
-        [DllImport("kernel32.dll")]
-        private static extern bool WriteProcessMemory(int hProcess, int lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesWritten);
-        [DllImport("kernel32.dll")]
-        private static extern IntPtr OpenThread(ThreadAccess dwDesiredAccess, bool bInheritHandle, uint dwThreadId);
-        [DllImport("kernel32.dll")]
-        private static extern uint SuspendThread(IntPtr hThread);
-        [DllImport("kernel32.dll")]
-        private static extern int ResumeThread(IntPtr hThread);
-        [DllImport("Kernel32")]
-        private static extern bool CloseHandle(IntPtr handle);
-        [DllImport("kernel32.dll")]
-        public static extern bool GetThreadContext(IntPtr hThread, ref ThreadContext lpContext);
-        [DllImport("kernel32.dll")]
-        private static extern IntPtr VirtualAllocEx(IntPtr hProcess, IntPtr lpAddress, int dwSize, MemoryAllocation flAllocationType, Protection flProtect);
-        [DllImport("kernel32.dll")]
-        private static extern bool VirtualFree(IntPtr lpAddress, IntPtr dwSize, MemoryAllocation freeType);
-        [DllImport("kernel32.dll")]
-        private static extern bool VirtualProtectEx(IntPtr hProcess, uint dwAddress, int nSize, uint flNewProtect, out uint lpflOldProtect);
-        [DllImport("kernel32.dll")]
-        private static extern IntPtr CreateRemoteThread(IntPtr hProcess, IntPtr lpThreadAttributes, uint dwStackSize, IntPtr lpStartAddress, IntPtr lpParameter, uint dwCreationFlags, out uint lpThreadId);
-
         public IntPtr Handle { get; private set; }
         public IntPtr MainModuleAddress { get; private set; }
         public int MainModuleSize { get; private set; }
@@ -71,7 +47,7 @@ namespace Prism
 
                 try
                 {
-                    this.Handle = OpenProcess(access, inheritHandle, this.Process.Id);
+                    this.Handle = Win32.OpenProcess(access, inheritHandle, this.Process.Id);
                     this.MainModuleAddress = this.Process.MainModule.BaseAddress;
                     this.MainModuleSize = this.Process.MainModule.ModuleMemorySize;
                     this.IsActive = true;
@@ -159,7 +135,7 @@ namespace Prism
             int byteCount = 0;
             byte[] buffer = new byte[size];
 
-            bool success = ReadProcessMemory((int)Handle, (int)address, buffer, buffer.Length, ref byteCount);
+            bool success = Win32.ReadProcessMemory((int)this.Handle, (int)address, buffer, buffer.Length, ref byteCount);
 
             return success ? buffer : buffer = null;
         }
@@ -230,12 +206,12 @@ namespace Prism
         public bool WriteBytes(byte[] buffer, IntPtr address)
         {
             int byteCount = 0;
-            return WriteProcessMemory((int)this.Handle, (int)address, buffer, buffer.Length, ref byteCount);
+            return Win32.WriteProcessMemory((int)this.Handle, (int)address, buffer, buffer.Length, ref byteCount);
         }
 
         public void Dispose()
         {
-            CloseHandle(this.Handle);
+            Win32.CloseHandle(this.Handle);
             this.IsActive = false;
             this.Process = null;
             this.MainModuleAddress = IntPtr.Zero;

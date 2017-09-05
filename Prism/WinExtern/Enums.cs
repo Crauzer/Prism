@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Prism
+namespace Prism.WinExtern
 {
     [Flags]
     public enum ThreadContextFlags : uint

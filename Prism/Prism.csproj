@@ -40,11 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums.cs" />
-    <Compile Include="FloatingSaveArea.cs" />
+    <Compile Include="WinExtern\Enums.cs" />
+    <Compile Include="WinExtern\FloatingSaveArea.cs" />
     <Compile Include="MemoryEditor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ThreadContext.cs" />
+    <Compile Include="WinExtern\ThreadContext.cs" />
+    <Compile Include="WinExtern\Win32.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

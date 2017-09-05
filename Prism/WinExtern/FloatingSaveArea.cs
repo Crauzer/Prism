@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Prism
+namespace Prism.WinExtern
 {
     [StructLayout(LayoutKind.Sequential)]
     public struct FloatingSaveArea
