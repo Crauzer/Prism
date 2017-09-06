@@ -1,4 +1,0 @@
-sudo: true
-mono: none
-script:
-- exit 0
