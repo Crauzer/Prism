@@ -1,2 +1,2 @@
 language: csharp
-solution: Prism.sln
+solution: "./Prism/Prism.sln"
