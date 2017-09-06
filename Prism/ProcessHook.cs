@@ -18,7 +18,7 @@ namespace Prism
         private readonly Hook _hook;
         private bool _disposed;
 
-        public ProcessHook(Process gameProcess, HookRegister register, IntPtr hookLocation, ProcessHook.HandleHookCallback callback)
+        public ProcessHook(Process gameProcess, HookRegister register, IntPtr hookLocation, HandleHookCallback callback)
         {
             Hook hookItem = new Hook()
             {

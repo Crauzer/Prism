@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>PrismMemoryEditor</id>
+    <version>1.0.0</version>
+    <authors>Crauzer</authors>
+    <owners>Crauzer</owners>
+    <licenseUrl>https://github.com/Crauzer/Prism</licenseUrl>
+    <projectUrl>https://github.com/Crauzer/Prism</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Simple .NET Memory Editor</description>
+    <releaseNotes>First Release</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>memory editor .net c#</tags>
+  </metadata>
+  
+  <files>
+    <file src="Prism/MemoryEditor.cs" target="content/Prism/MemoryEditor.cs"/>
+    <file src="Prism/ProcessHook.cs" target="content/Prism/ProcessHook.cs"/>
+    <file src="Prism/WinExtern/DebugEvent.cs" target="content/Prism/WinExtern/DebugEvent.cs"/>
+    <file src="Prism/WinExtern/Enums.cs" target="content/Prism/WinExtern/Enums.cs"/>
+    <file src="Prism/WinExtern/ExceptionDebugInfo.cs" target="content/Prism/WinExtern/ExceptionDebugInfo.cs"/>
+    <file src="Prism/WinExtern/ExceptionRecord.cs" target="content/Prism/WinExtern/ExceptionRecord.cs"/>
+    <file src="Prism/WinExtern/FloatingSaveArea.cs" target="content/Prism/WinExtern/FloatingSaveArea.cs"/>
+    <file src="Prism/WinExtern/LoadDllDebugInfo.cs" target="content/Prism/WinExtern/LoadDllDebugInfo.cs"/>
+    <file src="Prism/WinExtern/ThreadContext.cs" target="content/Prism/WinExtern/ThreadContext.cs"/>
+    <file src="Prism/WinExtern/ThreadEntry32.cs" target="content/Prism/WinExtern/ThreadEntry32.cs"/>
+    <file src="Prism/WinExtern/Win32.cs" target="content/Prism/WinExtern/Win32.cs"/>
+  </files>
+
+</package>
