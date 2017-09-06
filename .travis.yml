@@ -1,2 +1,4 @@
-language: csharp
-solution: "./Prism/Prism.sln"
+sudo: true
+mono: none
+script:
+- exit 0
